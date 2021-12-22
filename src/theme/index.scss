@@ -1,0 +1,20 @@
+@import '~antd/dist/antd.css';
+@import "vars";
+
+html {
+  min-height: 100vh;
+}
+
+
+body,
+#root,
+#root > .ant-layout {
+  min-height: inherit;
+}
+
+
+#root > .ant-layout {
+  padding: $root-padding;
+}
+
+@import "ant-card";

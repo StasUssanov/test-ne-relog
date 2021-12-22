@@ -1,0 +1,10 @@
+@import "src/theme/vars";
+
+.card-map {
+  min-height: calc(100vh - #{$root-padding*4+2});
+
+  & .ant-card-body,
+  & .leaflet-container {
+    min-height: inherit;
+  }
+}
