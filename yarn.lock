@@ -5039,6 +5039,11 @@ vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
+virtualizedtableforantd4@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/virtualizedtableforantd4/-/virtualizedtableforantd4-1.1.4.tgz#1990cda8d82225d53054d7ff544faf4fee7dd3c7"
+  integrity sha512-hVj3c0g9aI6EdAaWblA7U9xYSSVwP2CwXkfH/q6mfzh9dq6d+qpOaX3SRLFRA9tFuvfJJHQ2/PkNi4XYkl1dpQ==
+
 warning@^4.0.1:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"

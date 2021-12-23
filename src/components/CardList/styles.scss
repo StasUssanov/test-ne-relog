@@ -1,10 +1,10 @@
 @import "src/theme/vars";
 
-.card-map {
+.card-list {
   height: calc(100vh - #{$root-padding*2});
 
-  & .ant-card-body,
-  & .leaflet-container {
+  & .ant-card-body {
+    display: flex;
     height: 100%;
   }
 }
