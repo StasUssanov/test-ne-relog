@@ -1,0 +1,9 @@
+version: '3'
+services:
+  app:
+    container_name: test-ne-relog
+    build:
+      context: .
+    ports:
+      - "8080:80"
+    restart: always
