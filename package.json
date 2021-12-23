@@ -8,11 +8,13 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.7.1",
     "antd": "^4.17.4",
     "leaflet": "^1.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-leaflet": "^3.2.2"
+    "react-leaflet": "^3.2.2",
+    "react-redux": "^7.2.6"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
