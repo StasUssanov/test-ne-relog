@@ -6,16 +6,21 @@ html {
   min-height: 100vh;
 }
 
-
 body,
 #root,
 #root > .ant-layout {
   min-height: inherit;
 }
 
-
 #root > .ant-layout {
   padding: $root-padding;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - #{$root-padding*2});
 }
 
 @import "ant-card";

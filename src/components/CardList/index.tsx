@@ -5,62 +5,63 @@ import { Card, Table } from 'antd';
 import { useVT } from 'virtualizedtableforantd4';
 import ResizeObserver, { SizeInfo } from 'rc-resize-observer';
 
-export const CardList = (): JSX.Element => {
-    const pr = usePresenter();
+const CardList = (): JSX.Element => {
+  const pr = usePresenter();
 
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ columns ~~~ */
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ columns ~~~ */
 
-    const columns = [
-      {
-        key: 'name',
-        dataIndex: 'name',
-        title: 'Название клиента',
-      },
-      {
-        key: 'appType',
-        dataIndex: 'appType',
-        title: 'Тип заявки',
-      },
-      {
-        key: 'price',
-        dataIndex: 'price',
-        title: 'Цена заявки',
-      },
-    ];
+  const columns = [
+    {
+      key: 'name',
+      dataIndex: 'name',
+      title: 'Название клиента',
+    },
+    {
+      key: 'appType',
+      dataIndex: 'appType',
+      title: 'Тип заявки',
+    },
+    {
+      key: 'price',
+      dataIndex: 'price',
+      title: 'Цена заявки',
+    },
+  ];
 
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ scroll ~~~ */
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ scroll ~~~ */
 
-    const [scroll, setScroll] = useState<{ y: number }>({ y: 1000 });
+  const [scroll, setScroll] = useState<{ y: number }>({ y: 1000 });
 
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ onResize ~~~ */
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ onResize ~~~ */
 
-    const onResize = ({ height }: SizeInfo) => {
-      const headerHeight = document?.getElementsByClassName('ant-table-header')[0].clientHeight ?? 0;
-      setScroll({ y: height - headerHeight });
-    };
+  const onResize = ({ height }: SizeInfo) => {
+    const headerHeight = document?.getElementsByClassName('ant-table-header')[0].clientHeight ?? 0;
+    setScroll({ y: height - headerHeight });
+  };
 
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ hook ~ tableComponents ~~~ */
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ hook ~ tableComponents ~~~ */
 
-    const [tableComponents] = useVT(() => ({ scroll }), []);
+  const [tableComponents] = useVT(() => ({ scroll }), []);
 
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ return ~~~ */
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ return ~~~ */
 
-    return (
-      <Card className="card-list">
-        <ResizeObserver
-          onResize={onResize}
-          children={<div style={{ width: 0, height: '100%' }}/>}
-        />
-        <Table
-          rowKey="id"
-          columns={columns}
-          dataSource={pr.dataSource}
-          components={tableComponents}
-          scroll={scroll}
-          size="small"
-          pagination={false}
-        />
-      </Card>
-    );
-  }
-;
+  return (
+    <Card className="card-list">
+      <ResizeObserver
+        onResize={onResize}
+        children={<div style={{ width: 0, height: '100%' }}/>}
+      />
+      <Table
+        rowKey="id"
+        columns={columns}
+        dataSource={pr.dataSource}
+        components={tableComponents}
+        scroll={scroll}
+        size="small"
+        pagination={false}
+      />
+    </Card>
+  );
+};
+
+export default CardList;

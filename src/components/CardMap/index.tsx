@@ -5,7 +5,7 @@ import { Card, Space, Typography } from 'antd';
 import { MapContainer, TileLayer, Marker, Tooltip } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 
-export const CardMap = (): JSX.Element => {
+const CardMap = (): JSX.Element => {
   const pr = usePresenter();
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ eventHandlers ~~~ */
@@ -64,3 +64,5 @@ export const CardMap = (): JSX.Element => {
     </Card>
   );
 };
+
+export default CardMap;
