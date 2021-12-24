@@ -3,6 +3,7 @@ import { Col, Layout, Row, Space, Spin, Typography } from 'antd';
 
 const CardList = lazy(() => import('./components/CardList'));
 const CardMap = lazy(() => import('./components/CardMap'));
+const ModalClient = lazy(() => import('./components/ModalClient'));
 
 const Loader: FC = () => (
   <div className="loader">
@@ -28,6 +29,7 @@ const App: FC = () => (
             <CardMap/>
           </Col>
         </Row>
+        <ModalClient/>
       </Suspense>
     </Layout.Content>
   </Layout>

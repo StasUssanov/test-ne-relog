@@ -1,12 +1,28 @@
 import React, { useState } from 'react';
 import { usePresenter } from './use-presenter';
 import './styles.scss';
-import { Card, Table } from 'antd';
+import { Card, Table, Tag } from 'antd';
 import { useVT } from 'virtualizedtableforantd4';
 import ResizeObserver, { SizeInfo } from 'rc-resize-observer';
+import { EType } from '../../store/data-base/types';
+import { TDataSource } from './types';
 
 const CardList = (): JSX.Element => {
   const pr = usePresenter();
+
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ tagRender ~~~ */
+
+  const tagRender = (type: EType) => {
+    const title = type === EType.DELIVERY ? 'ДОСТАВКА' : 'ЗАБОР';
+    const color = type === EType.DELIVERY ? 'geekblue' : 'green';
+
+    return (
+      <Tag
+        color={color}
+        children={title}
+      />
+    );
+  };
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ columns ~~~ */
 
@@ -20,6 +36,7 @@ const CardList = (): JSX.Element => {
       key: 'appType',
       dataIndex: 'appType',
       title: 'Тип заявки',
+      render: (appType: EType) => tagRender(appType),
     },
     {
       key: 'price',
@@ -43,6 +60,12 @@ const CardList = (): JSX.Element => {
 
   const [tableComponents] = useVT(() => ({ scroll }), []);
 
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ onRow ~~~ */
+
+  const onRow = ({ id }: TDataSource, index?: number) => ({
+    onClick: () => pr.onSelectClient(id, index ?? 0),
+  });
+
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ return ~~~ */
 
   return (
@@ -57,8 +80,9 @@ const CardList = (): JSX.Element => {
         dataSource={pr.dataSource}
         components={tableComponents}
         scroll={scroll}
-        size="small"
         pagination={false}
+        onRow={onRow}
+        rowClassName="card-list__row"
       />
     </Card>
   );

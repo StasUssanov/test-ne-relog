@@ -1,9 +1,11 @@
 import { TDataSource } from './types';
-import { useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { setSelectedApp } from '../../store/_app';
 
 export const usePresenter = () => {
   const apps = useAppSelector((state) => state.dataBaseReducer.apps);
   const clients = useAppSelector((state) => state.dataBaseReducer.clients);
+  const dispatch = useAppDispatch();
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ dataSource ~~~ */
 
@@ -17,9 +19,16 @@ export const usePresenter = () => {
     });
   });
 
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ onSelectClient ~~~ */
+
+  const onSelectClient = (id: number, index: number) => {
+    dispatch(setSelectedApp({ selectedApp: { id, index } }));
+  };
+
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ return ~~~ */
 
   return {
     dataSource,
+    onSelectClient,
   };
 };

@@ -10,21 +10,19 @@ const CardMap = (): JSX.Element => {
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ eventHandlers ~~~ */
 
-  const eventHandlers = (key: number) => {
+  const eventHandlers = (key: number, index?: number) => {
     return ({
-      click: () => {
-        console.log('deb marker clicked', key);
-      }
+      click: () => pr.onSelectClient(key, index ?? 0),
     });
   };
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ markersRender ~~~ */
 
-  const markersRender = () => pr.markersSource.map((item) => (
+  const markersRender = () => pr.markersSource.map((item, index) => (
     <Marker
       key={`card-map-marker-key${item.id}`}
       position={[item.position.lat, item.position.long]}
-      eventHandlers={eventHandlers(item.id)}
+      eventHandlers={eventHandlers(item.id, index)}
     >
       <Tooltip>
         <Space direction="vertical">
